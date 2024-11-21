@@ -1,4 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import apiClient from "../../lib/axios"; // Import your API client
+
+// Thunk for logout
+export const performLogout = createAsyncThunk(
+  "auth/logout",
+  async (_, { dispatch }) => {
+    try {
+      // Clear any tokens or user data stored in localStorage or sessionStorage
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("user");
+
+      // Optionally, call an API endpoint to invalidate the session
+      await apiClient.post("/logout");
+
+      // Dispatch the logout action to update Redux state
+      dispatch(logoutUser());
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: "auth",
@@ -25,6 +48,20 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(performLogout.pending, (state) => {
+        state.authLoading = true; // Set loading state
+      })
+      .addCase(performLogout.fulfilled, (state) => {
+        state.authLoading = false;
+        state.user = null; // Clear user
+        state.token = null; // Clear token
+      })
+      .addCase(performLogout.rejected, (state) => {
+        state.authLoading = false; // Handle error state
+      });
   },
 });
 
