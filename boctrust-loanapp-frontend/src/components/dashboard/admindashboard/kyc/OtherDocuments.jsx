@@ -53,8 +53,6 @@ const OtherDocuments = ({ customerObj, setShowDocs }) => {
                 <th>Full Name</th>
                 <th>Employment Letters</th>
                 <th>Bank Statements</th>
-                <th>Pay Slip</th>
-                <th>Time Stamp</th>
               </tr>
             </thead>
             <tbody>
@@ -69,26 +67,17 @@ const OtherDocuments = ({ customerObj, setShowDocs }) => {
                 <td>{customerObj.customerId}</td>
                 <td>{customerObj.firstname + " " + customerObj.lastname}</td>
                 <td
-                  onClick={() => handleDocs(customerObj.employmentletter)}
-                  className="viewDocsBtn"
+                  // className="viewDocsBtn"
                   style={styles.completed}
                 >
                   View
                 </td>
                 <td
-                  onClick={() => handleDocs(customerObj.uploadbankstatement)}
-                  className="viewDocsBtn"
                   style={styles.approved}
                 >
                   View
                 </td>
-                <td
-                  onClick={() => handleDocs(customerObj.uploadpayslip)}
-                  className="viewDocsBtn"
-                  style={styles.approved}
-                >
-                  View
-                </td>
+
                 <td>-</td>
               </tr>
             </tbody>

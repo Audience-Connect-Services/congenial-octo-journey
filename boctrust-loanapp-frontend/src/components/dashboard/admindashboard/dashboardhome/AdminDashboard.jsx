@@ -252,7 +252,7 @@ const AdminDashboard = () => {
         setCurrentTitle(" Access Control");
         break;
       case "report":
-        setCurrentTitle("Account Statement");
+        setCurrentTitle("Review Report");
         break;
       case "accountbalance":
         setCurrentTitle("Account Balance");
