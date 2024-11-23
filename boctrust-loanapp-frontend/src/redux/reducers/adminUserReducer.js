@@ -59,7 +59,8 @@ export const addNewRole = createAsyncThunk(
   "admin/addNewRole",
   async (payload, thunkAPI) => {
     try {
-      await apiClient.post(`/api/role`, payload);
+      console.log("HEDA",payload)
+      await apiClient.post(`/role`, payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data?.error || "Something went wrong"
