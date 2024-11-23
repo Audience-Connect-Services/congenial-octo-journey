@@ -23,7 +23,7 @@ const initialValues = {
   email: "",
   phone: "",
   username: "",
-  password: "",
+  password: "#Admin001",
   userRole: "",
   userType: "",
 };
@@ -67,6 +67,8 @@ const CreateNewAdmin = () => {
       formData.append("password", values.password);
 
       formData.append("userType", values.userType);
+
+      console.log("PA", values);
 
       if (values.userType && values.userType === "super_admin") {
         const adminRole = rolesAndPermission?.find(
@@ -178,11 +180,17 @@ const CreateNewAdmin = () => {
               <input
                 type="tel"
                 name="phone"
-                placeholder="e.g. 09082312333"
+                placeholder="e.g. +2347047202860"
                 id="phone"
                 onBlur={formik.handleBlur}
                 className="Input"
-                onChange={formik.handleChange}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  // Ensure the phone number starts with a "+" and only contains digits after the "+"
+                  const formattedValue = value.startsWith("+") ? value : `+${value}`;
+                  formik.setFieldValue("phone", formattedValue);
+                }}
+                value={formik.values.phone}
               />
               {formik.errors.phone && formik.touched.phone ? (
                 <div className="Error">{formik.errors.phone}</div>
@@ -207,7 +215,7 @@ const CreateNewAdmin = () => {
                 <div className="Error">{formik.errors.username}</div>
               ) : null}
             </div>
-            <div className="FieldGroup IUpload">
+            {/* <div className="FieldGroup IUpload">
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -221,58 +229,58 @@ const CreateNewAdmin = () => {
               {formik.errors.password && formik.touched.password ? (
                 <div className="Error">{formik.errors.password}</div>
               ) : null}
-            </div>
-          </div>
-
-          <div className="FieldRow">
-            <div className="FieldGroup">
-              <label htmlFor="userType">User Type</label>
-              <select
-                name="userType"
-                onBlur={formik.handleBlur}
-                id="userType"
-                className="Input"
-                onChange={formik.handleChange}
-              >
-                <option value="">Select Type</option>
-                {userTypes.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              {formik.errors.userType && formik.touched.userType ? (
-                <div className="Error">{formik.errors.userType}</div>
-              ) : null}
-            </div>
-
-            {rolesAndPermission && (
+            </div> */}
+            <div className="FieldRow">
               <div className="FieldGroup">
-                <label htmlFor="userRole">User Roles</label>
+                <label htmlFor="userType">User Type</label>
                 <select
-                  name="userRole"
+                  name="userType"
                   onBlur={formik.handleBlur}
-                  disabled={
-                    !formik.values.userType ||
-                    formik.values.userType === "super_admin"
-                  }
-                  onChange={formik.handleChange}
-                  id="userRole"
+                  id="userType"
                   className="Input"
+                  onChange={formik.handleChange}
                 >
-                  <option value="">Select Role</option>
-                  {rolesAndPermission.map((option) => (
-                    <option key={option._id} value={option._id}>
+                  <option value="">Select Type</option>
+                  {userTypes.map((option) => (
+                    <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
                   ))}
                 </select>
-                {formik.errors.userRole && formik.touched.userRole ? (
-                  <div className="Error">{formik.errors.userRole}</div>
+                {formik.errors.userType && formik.touched.userType ? (
+                  <div className="Error">{formik.errors.userType}</div>
                 ) : null}
               </div>
-            )}
+
+              {rolesAndPermission && (
+                <div className="FieldGroup">
+                  <label htmlFor="userRole">User Roles</label>
+                  <select
+                    name="userRole"
+                    onBlur={formik.handleBlur}
+                    disabled={
+                      !formik.values.userType ||
+                      formik.values.userType === "super_admin"
+                    }
+                    onChange={formik.handleChange}
+                    id="userRole"
+                    className="Input"
+                  >
+                    <option value="">Select Role</option>
+                    {rolesAndPermission.map((option) => (
+                      <option key={option._id} value={option._id}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  {formik.errors.userRole && formik.touched.userRole ? (
+                    <div className="Error">{formik.errors.userRole}</div>
+                  ) : null}
+                </div>
+              )}
+            </div>
           </div>
+
 
           {/* adminRoles checkbox options section */}
           {/* <div className="AdminRoles">

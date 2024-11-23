@@ -18,6 +18,7 @@ import sortByCreatedAt from "../../shared/sortedByDate";
 import KycViewDetails from "./KycViewDetails";
 import { fetchAllCustomersLoans } from "../../../../redux/reducers/customersLoansReducer";
 import apiClient from "../../../../lib/axios";
+import { useLocation } from "react-router-dom";
 
 const KycCheck = () => {
   const styles = {
@@ -43,6 +44,8 @@ const KycCheck = () => {
       color: "#ecaa00",
     },
   };
+
+  const location = useLocation();
 
   // fetch all customer
   const dispatch = useDispatch();
@@ -245,13 +248,13 @@ const KycCheck = () => {
               <Table borderless hover responsive="sm">
                 <thead style={styles.head}>
                   <tr>
-                    <th>Customer ID</th>
+                    <th>Customer ss ID</th>
                     <th>Full Name</th>
                     <th>Phone</th>
                     <th>Date</th>
-                    <th>View Details</th>
+                    {location.pathname==="/dashboard/kyc" && <th>View Details</th>}
                     <th>View Documents</th>
-                    <th>Do Review</th>
+                    {location.pathname==="/dashboard/kyc" && <th>Do Review</th>}
                   </tr>
                 </thead>
                 <tbody>
@@ -268,13 +271,13 @@ const KycCheck = () => {
                         <td>{customer.firstname + " " + customer.lastname}</td>
                         <td>{customer.phonenumber}</td>
                         <td>{getDateOnly(customer.createdAt)}</td>
-                        <td
+                        { location.pathname==="/dashboard/kyc" && <td
                           onClick={() => handleViewInfo(customer._id)}
                           style={styles.padding}
                           className="viewDocs"
                         >
                           View
-                        </td>
+                        </td>}
                         <td
                           onClick={() => handleViewDocs(customer._id)}
                           style={styles.padding}
@@ -282,7 +285,7 @@ const KycCheck = () => {
                         >
                           View
                         </td>
-                        <td>
+                        {location.pathname==="/dashboard/kyc" && <td>
                           <div>
                             {customer.kyc.isKycApproved ? (
                               <BocButton
@@ -317,7 +320,7 @@ const KycCheck = () => {
                               </BocButton>
                             )}
                           </div>
-                        </td>
+                        </td>}
                       </tr>
                     ))
                   )}

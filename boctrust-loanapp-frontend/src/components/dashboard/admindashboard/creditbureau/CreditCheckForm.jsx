@@ -107,7 +107,7 @@ const CreditCheckhtmlForm = ({
     monthlyLoanRepayment: 0,
     dateOfBirth: "",
     dateOfAppointment: "",
-    uploadPaySlip: "",
+    uploadPaySlip: null,
     benchmark: 0,
   });
 
@@ -742,7 +742,7 @@ const CreditCheckhtmlForm = ({
       monthlyLoanRepayment: 0,
       dateOfBirth: "",
       dateOfAppointment: "",
-      uploadPaySlip: "",
+      uploadPaySlip: null,
       benchmark: 0,
     });
   };
@@ -768,7 +768,7 @@ const CreditCheckhtmlForm = ({
         setIsUpdateLoading(false);
       }
     } else if (formStep === 2) {
-      if (!formState.uploadPaySlip) {
+      if (formState.uploadPaySlip===null) {
         return notify("Please Provide a Payslip");
       }
       if (!formState.netPay || !formState.monthlyLoanRepayment) {

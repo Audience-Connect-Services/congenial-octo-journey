@@ -321,7 +321,7 @@ const CreditBureauDashboard = () => {
                               {customer?.creditCheck.assignment.creditAnalyst ==
                               admin.fullName
                                 ? "Continue..."
-                                : "Start"}
+                                : "Assigned"}
                             </BocButton>
                           </div>
                         </td>
