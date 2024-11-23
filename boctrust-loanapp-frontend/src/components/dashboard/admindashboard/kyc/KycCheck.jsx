@@ -31,7 +31,7 @@ const KycCheck = () => {
     },
     head: {
       color: "#fff",
-     
+
     },
     approved: {
       color: "#5cc51c",
@@ -358,31 +358,31 @@ const KycCheck = () => {
                       <div className="Match">
                         <p>Is there a Facial Match?</p>
                         <div className="Radio">
-                          
+
                           <label>
-                          <input
-                            type="radio"
-                            className="yes"
-                            name="isFacialMatch"
-                            value={true}
-                            onChange={(e) =>
-                              handleRadioChange("isFacialMatch", e.target.value)
-                            }
-                          />
+                            <input
+                              type="radio"
+                              className="yes"
+                              name="isFacialMatch"
+                              value={true}
+                              onChange={(e) =>
+                                handleRadioChange("isFacialMatch", e.target.value)
+                              }
+                            />
                             <span>Yes</span>
                           </label>
 
-                          
+
                           <label htmlFor="no">
-                          <input
-                            type="radio"
-                            className="no"
-                            name="isFacialMatch"
-                            value={false}
-                            onChange={(e) =>
-                              handleRadioChange("isFacialMatch", e.target.value)
-                            }
-                          />
+                            <input
+                              type="radio"
+                              className="no"
+                              name="isFacialMatch"
+                              value={false}
+                              onChange={(e) =>
+                                handleRadioChange("isFacialMatch", e.target.value)
+                              }
+                            />
                             <span>No</span>
                           </label>
                         </div>
@@ -391,9 +391,9 @@ const KycCheck = () => {
                       <div className="Match">
                         <p>Is there a Valid ID Card?</p>
                         <div className="Radio">
-                          
-                           <label>
-                           <input
+
+                          <label>
+                            <input
                               type="radio"
                               className="yes"
                               name="isIdCardValid"
@@ -403,14 +403,14 @@ const KycCheck = () => {
                               }
                             />
                             <span>Yes</span>
-                           </label>
-                         
-                          
-                         
+                          </label>
 
-                         
+
+
+
+
                           <label>
-                            
+
                             <input
                               type="radio"
                               className="no"
@@ -428,40 +428,40 @@ const KycCheck = () => {
                       <div className="Match">
                         <p>Is there a Photo Capture?</p>
                         <div className="Radio">
-                         
+
                           <label>
-                          <input
-                            type="radio"
-                            className="yes"
-                            name="isPhotoCaptured"
-                            value={true}
-                            onChange={(e) => {
-                              handleRadioChange(
-                                "isPhotoCaptured",
-                                e.target.value
-                              );
-                            }}
-                          />
-                            
+                            <input
+                              type="radio"
+                              className="yes"
+                              name="isPhotoCaptured"
+                              value={true}
+                              onChange={(e) => {
+                                handleRadioChange(
+                                  "isPhotoCaptured",
+                                  e.target.value
+                                );
+                              }}
+                            />
+
                             <span>Yes</span>
                           </label>
 
-                        
+
                           <label>
-                          <input
-                            type="radio"
-                            className="no"
-                            name="isPhotoCaptured"
-                            value={false}
-                            onChange={(e) => {
-                              handleRadioChange(
-                                "isPhotoCaptured",
-                                e.target.value
-                              );
-                            }}
-                          /> 
-                            
-                           <span>No</span>
+                            <input
+                              type="radio"
+                              className="no"
+                              name="isPhotoCaptured"
+                              value={false}
+                              onChange={(e) => {
+                                handleRadioChange(
+                                  "isPhotoCaptured",
+                                  e.target.value
+                                );
+                              }}
+                            />
+
+                            <span>No</span>
                           </label>
                         </div>
                       </div>
@@ -469,37 +469,37 @@ const KycCheck = () => {
                       <div className="Match">
                         <p>Is there a Valid Signature?</p>
                         <div className="Radio">
-                         
+
                           <label>
-                          <input
-                            type="radio"
-                            className="yes"
-                            name="isSignatureValid"
-                            value={true}
-                            onChange={(e) => {
-                              handleRadioChange(
-                                "isSignatureValid",
-                                e.target.value
-                              );
-                            }}
-                          />
+                            <input
+                              type="radio"
+                              className="yes"
+                              name="isSignatureValid"
+                              value={true}
+                              onChange={(e) => {
+                                handleRadioChange(
+                                  "isSignatureValid",
+                                  e.target.value
+                                );
+                              }}
+                            />
                             <span>Yes</span>
                           </label>
 
-                          
+
                           <label >
-                          <input
-                            type="radio"
-                            className="no"
-                            name="isSignatureValid"
-                            value={false}
-                            onChange={(e) => {
-                              handleRadioChange(
-                                "isSignatureValid",
-                                e.target.value
-                              );
-                            }}
-                          />
+                            <input
+                              type="radio"
+                              className="no"
+                              name="isSignatureValid"
+                              value={false}
+                              onChange={(e) => {
+                                handleRadioChange(
+                                  "isSignatureValid",
+                                  e.target.value
+                                );
+                              }}
+                            />
                             <span>No</span>
                           </label>
                         </div>
@@ -508,79 +508,79 @@ const KycCheck = () => {
                       <div className="Match">
                         <p>Is Other Document Verified?</p>
                         <div className="Radio">
-                          
+
                           <label>
-                          <input
-                            type="radio"
-                            className="yes"
-                            name="isOtherDocsValidated"
-                            value={true}
-                            onChange={(e) => {
-                              handleRadioChange(
-                                "isOtherDocsValidated",
-                                e.target.value
-                              );
-                            }}
-                          />
+                            <input
+                              type="radio"
+                              className="yes"
+                              name="isOtherDocsValidated"
+                              value={true}
+                              onChange={(e) => {
+                                handleRadioChange(
+                                  "isOtherDocsValidated",
+                                  e.target.value
+                                );
+                              }}
+                            />
                             <span>Yes</span>
                           </label>
 
-                         
+
                           <label>
-                          <input
-                            type="radio"
-                            className="no"
-                            name="isOtherDocsValidated"
-                            value={false}
-                            onChange={(e) => {
-                              handleRadioChange(
-                                "isOtherDocsValidated",
-                                e.target.value
-                              );
-                            }}
-                          />
-                           <span> No</span>
-                            </label>
+                            <input
+                              type="radio"
+                              className="no"
+                              name="isOtherDocsValidated"
+                              value={false}
+                              onChange={(e) => {
+                                handleRadioChange(
+                                  "isOtherDocsValidated",
+                                  e.target.value
+                                );
+                              }}
+                            />
+                            <span> No</span>
+                          </label>
                         </div>
                       </div>
 
                       <div className="Match matchKyc">
                         <p>KYC Completed & Approved</p>
                         <div className="Radio">
-                         
+
                           <label >
-                            
-                          <input
-                            type="radio"
-                            className="yes"
-                            name="isKycApproved"
-                            value={true}
-                            onChange={(e) => {
-                              handleRadioChange(
-                                "isKycApproved",
-                                e.target.value
-                              );
-                            }}
-                          />
-                          <span>Yes</span>
-                            
+
+                            <input
+                              type="radio"
+                              className="yes"
+                              name="isKycApproved"
+                              value={true}
+                              onChange={(e) => {
+                                handleRadioChange(
+                                  "isKycApproved",
+                                  e.target.value
+                                );
+                              }}
+                            />
+                            <span>Yes</span>
+
                           </label>
 
-                         
+
                           <label>
-                          <input
-                            type="radio"
-                            className="no"
-                            name="isKycApproved"
-                            value={false}
-                            onChange={(e) => {
-                              handleRadioChange(
-                                "isKycApproved",
-                                e.target.value
-                              );
-                            }}
-                          />
-                          <span>No</span>
+                            <input
+                              type="radio"
+                              className="no"
+                              name="isKycApproved"
+                              value={false}
+                              onChange={(e) => {
+                                handleRadioChange(
+                                  "isKycApproved",
+                                  e.target.value
+                                );
+                              }}
+                            />
+                            <span>No</span>
                           </label>
                         </div>
                       </div>
@@ -653,6 +653,12 @@ const KycCheck = () => {
                     margin="8px 28px"
                     bgcolor="#145098"
                     func={handleSaveCheck}
+                    disable={!(isFacialMatch === true &&
+                      isIdCardValid === true &&
+                      isPhotoCaptured === true &&
+                      isSignatureValid === true &&
+                      isOtherDocsValidated === true &&
+                      isKycApproved === true)}
                   >
                     Validate/Approve
                   </BocButton>
