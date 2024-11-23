@@ -12,7 +12,7 @@ const Branches = () => {
   const [admin, setAdmin] = useState("");
   const [adminRoles, setAdminRoles] = useState([]);
 
-  const [openAddBranch, setOpenAddBranch] = useState(false);
+  const [openAddBranch, setOpenAddBranch] = useState(true);
   // open add branch component
   const openAddBranches = () => setOpenAddBranch(true);
 
@@ -73,6 +73,15 @@ const Branches = () => {
               </div>
             </DashboardHeadline>
           </div>
+          <div className="AddBtn">
+              <BocButton
+                bgcolor="#ecaa00"
+                bradius="22px"
+                func={openAddBranches}
+              >
+                <span>+</span> Add New Branch
+              </BocButton>
+            </div>
           <div>
             {/* branches list  */}
             <div className="ListSec">
