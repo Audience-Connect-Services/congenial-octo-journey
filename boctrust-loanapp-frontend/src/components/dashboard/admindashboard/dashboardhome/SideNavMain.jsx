@@ -49,9 +49,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div
-        className={`link__wrap  ${
-          checkSectionActive("dashboard") ? "section__active" : ""
-        }`}
+        className={`link__wrap  ${checkSectionActive("dashboard") ? "section__active" : ""
+          }`}
         onClick={(e) => {
           onMenuItemClick(e);
           setActiveSection("dashboard");
@@ -76,9 +75,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div
-        className={`link__wrap  ${
-          checkSectionActive("branches") ? "section__active" : ""
-        }`}
+        className={`link__wrap  ${checkSectionActive("branches") ? "section__active" : ""
+          }`}
         onClick={(e) => {
           onMenuItemClick(e);
           setActiveSection("branches");
@@ -92,15 +90,14 @@ const SideNavMain = ({ onMenuItemClick }) => {
           }
         >
           <img src="/images/dmda.png" alt="branches" />
-          <p  id="branches" >Branches</p>
+          <p id="branches" >Branches</p>
         </NavLink>
       </div>
 
       {/* Menu with sub item */}
       <div
-        className={`link__wrap ${
-          checkSectionActive("customers") ? "section__active" : ""
-        }`}
+        className={`link__wrap ${checkSectionActive("customers") ? "section__active" : ""
+          }`}
         onClick={() => {
           setActiveSection("customers");
         }}
@@ -135,9 +132,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
       {/* loans menu */}
 
       <div
-        className={`link__wrap ${
-          checkSectionActive("loans") ? "section__active" : ""
-        }`}
+        className={`link__wrap ${checkSectionActive("loans") ? "section__active" : ""
+          }`}
         onClick={() => {
           setActiveSection("loans");
         }}
@@ -259,9 +255,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
       {/* repayment menu */}
       <div
-        className={`link__wrap  ${
-          checkSectionActive("repayment") ? "section__active" : ""
-        }`}
+        className={`link__wrap  ${checkSectionActive("repayment") ? "section__active" : ""
+          }`}
         onClick={(e) => {
           onMenuItemClick(e);
           setActiveSection("repayment");
@@ -270,7 +265,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <NavLink
           to="/dashboard/repayment"
           id="repayment"
-         
+
           className={({ isActive }) =>
             `IconBox ${isActive ? "link_active " : ""}`
           }
@@ -282,9 +277,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
       {/* account menu */}
       <div
-        className={`link__wrap ${
-          checkSectionActive("accounts") ? "section__active" : ""
-        }`}
+        className={`link__wrap ${checkSectionActive("accounts") ? "section__active" : ""
+          }`}
         onClick={() => {
           setActiveSection("accounts");
         }}
@@ -359,9 +353,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
       {/* NIBSS Menu with sub item */}
       <div
-        className={`link__wrap ${
-          checkSectionActive("nibss") ? "section__active" : ""
-        }`}
+        className={`link__wrap ${checkSectionActive("nibss") ? "section__active" : ""
+          }`}
         onClick={() => {
           setActiveSection("nibss");
         }}
@@ -428,9 +421,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div
-        className={`link__wrap ${
-          checkSectionActive("remita") ? "section__active" : ""
-        }`}
+        className={`link__wrap ${checkSectionActive("remita") ? "section__active" : ""
+          }`}
         onClick={() => {
           setActiveSection("remita");
         }}
@@ -510,9 +502,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
       {(superAdmin || !shouldNotSee?.includes("creditAssessment")) && (
         <div
-          className={`link__wrap  ${
-            checkSectionActive("creditbureau") ? "section__active" : ""
-          }`}
+          className={`link__wrap  ${checkSectionActive("creditbureau") ? "section__active" : ""
+            }`}
           onClick={(e) => {
             onMenuItemClick(e);
             setActiveSection("creditbureau");
@@ -521,7 +512,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
           <NavLink
             to="/dashboard/creditbureau"
             id="creditbureau"
-            
+
             className={({ isActive }) =>
               `IconBox ${isActive ? "link_active " : ""}`
             }
@@ -538,9 +529,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
       {superAdmin || !shouldNotSee?.includes("employerManager") ? (
         <div
-          className={`link__wrap ${
-            checkSectionActive("mdas") ? "section__active" : ""
-          }`}
+          className={`link__wrap ${checkSectionActive("mdas") ? "section__active" : ""
+            }`}
           onClick={() => {
             setActiveSection("mdas");
           }}
@@ -621,9 +611,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
       {superAdmin || !shouldNotSee?.includes("kycReview") ? (
         <div
-          className={`link__wrap ${
-            checkSectionActive("kyc") ? "section__active" : ""
-          }`}
+          className={`link__wrap ${checkSectionActive("kyc") ? "section__active" : ""
+            }`}
           onClick={() => {
             setActiveSection("kyc");
           }}
@@ -691,17 +680,20 @@ const SideNavMain = ({ onMenuItemClick }) => {
         </div>
       ) : null}
       <div
-        className={`link__wrap ${
-          checkSectionActive("webmanager") ? "section__active" : ""
-        }`}
+        className={`link__wrap ${checkSectionActive("webmanager") ? "section__active" : ""
+          }`}
         onClick={() => {
           setActiveSection("webmanager");
         }}
       >
-        <div className="IconBox">
-          <img src="/images/dwebsite.png" alt="webmanager" />
-          <p>Website Manager</p>
-        </div>
+
+        {
+          (superAdmin || !shouldNotSee?.includes("websiteManager")) &&
+          <div className="IconBox">
+            <img src="/images/dwebsite.png" alt="webmanager" />
+            <p>Website Manager</p>
+          </div>
+        }
 
         {checkSectionActive("webmanager") && (
           <div className="SubItem">
@@ -829,9 +821,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
       {(superAdmin || !shouldNotSee?.includes("userManager")) && (
         <div
-          className={`link__wrap ${
-            checkSectionActive("users") ? "section__active" : ""
-          }`}
+          className={`link__wrap ${checkSectionActive("users") ? "section__active" : ""
+            }`}
           onClick={() => {
             setActiveSection("users");
           }}
@@ -887,9 +878,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
       )}
 
       <div
-        className={`link__wrap ${
-          checkSectionActive("report") ? "section__active" : ""
-        }`}
+        className={`link__wrap ${checkSectionActive("report") ? "section__active" : ""
+          }`}
         onClick={() => {
           setActiveSection("report");
         }}
@@ -940,9 +930,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
       {(superAdmin || !shouldNotSee?.includes("userManager")) && (
         <div
-          className={`link__wrap ${
-            checkSectionActive("settings") ? "section__active" : ""
-          }`}
+          className={`link__wrap ${checkSectionActive("settings") ? "section__active" : ""
+            }`}
           onClick={() => {
             setActiveSection("settings");
           }}
