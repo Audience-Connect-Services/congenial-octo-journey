@@ -20,13 +20,11 @@ const validationSchema = Yup.object({
   firstname: Yup.string().required("Required"),
   lastname: Yup.string().required("Required"),
   phonenumber: Yup.string()
-    .required("Required")
     .matches(
-      /^0[789][01]\d{8}$/,
-      "Phone number must be a valid Nigerian number, e.g., 09023653676"
+      /^\+?[1-9]\d{1,14}$/,
+      "Phone number must be in E.164 format (e.g., +2347047202860)"
     )
-    .min(11, "Must be exactly 11 digits")
-    .max(11, "Must be exactly 11 digits"),
+    .required("Phone number is required"),
   dob: Yup.date().required("Required"),
   email: Yup.string().email("Invalid email format").required("Required"),
   maritalstatus: Yup.string().required("Required"),

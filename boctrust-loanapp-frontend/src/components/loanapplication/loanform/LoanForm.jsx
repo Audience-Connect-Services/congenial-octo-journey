@@ -633,7 +633,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                         label="Phone Number"
                                         name="phonenumber"
                                         type="tel"
-                                        placeholder="08012345678"
+                                        placeholder="e.g. +2347047202860"
                                       />
                                       <div className="Space"></div>
                                       <SelectField
