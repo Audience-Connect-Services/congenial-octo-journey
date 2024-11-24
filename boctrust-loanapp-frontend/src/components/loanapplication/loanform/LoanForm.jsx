@@ -133,7 +133,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
       ref.current?.setFieldValue("bvnnumber", firstStepData?.bvn || "");
       ref.current?.setFieldValue("loanamount", firstStepData?.loanAmount || "");
       ref.current?.setFieldValue("careertype", firstStepData?.careerType || "");
-      setCareerType(firstStepData.careerType || "");
+      setCareerType(firstStepData.careerType || "government employee");
       ref.current?.setFieldValue(
         "numberofmonth",
         firstStepData?.numberOfMonths || ""
