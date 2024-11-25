@@ -1134,7 +1134,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                   <button
                                     type="button"
                                     onClick={handleNext}
-                                    disabled={isSubmitting}
+                                    disabled={(isSubmitting || (careerType==="government employee" && employerId==="other"))}
                                     className="BtnAction BtnSecondary"
                                   >
                                     Next
