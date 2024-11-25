@@ -101,7 +101,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
     if (firstStepData) {
       console.log("AAAAAA", firstStepData);
     }
-  }, [firstStepData])
+  }, [firstStepData]);
 
   // Fetch Officers, Products and Employers
   useEffect(() => {
@@ -173,7 +173,15 @@ const LoanForm = React.memo(function LoanFormComponent() {
   const [signature, setSignature] = useState("");
   const [marketerClientPic, setMarketerClientPic] = useState("");
 
-  const fileFields = ["valididcard", "uploadbankstatement", "signature", "marketerClientPic", "photocapture", "employmentletter", "uploadpayslip"]
+  const fileFields = [
+    "valididcard",
+    "uploadbankstatement",
+    "signature",
+    "marketerClientPic",
+    "photocapture",
+    "employmentletter",
+    "uploadpayslip",
+  ];
 
   const updateFormValues = () => {
     const formValues = getFromLocalStorage("onbaordData");
@@ -181,23 +189,22 @@ const LoanForm = React.memo(function LoanFormComponent() {
     if (formValues) {
       console.log(formValues, "formValues");
 
-      Object.entries(formValues).forEach((item,) => {
-
+      Object.entries(formValues).forEach((item) => {
         ref.current?.setFieldValue(
           item,
 
-          fileFields.includes(item) ?
-            getFile(
-              item,
-              `${item}_for_${formValues.firstname}_${formValues.lastname}`
-            ) : formValues[item]
+          fileFields.includes(item)
+            ? getFile(
+                item,
+                `${item}_for_${formValues.firstname}_${formValues.lastname}`
+              )
+            : formValues[item]
         );
       });
     }
   };
 
-
-  const [sigError,setSigError]=useState(false);
+  const [sigError, setSigError] = useState(false);
 
   useEffect(() => {
     updateFormValues();
@@ -207,7 +214,6 @@ const LoanForm = React.memo(function LoanFormComponent() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [step, showForm]);
-
 
   // update photocapture value when captureImg change
   useEffect(() => {
@@ -264,10 +270,10 @@ const LoanForm = React.memo(function LoanFormComponent() {
         employer?.mandateRule?.allowStacking == "yes"
         ? "remita"
         : calcDaysDiffFromNow(ref.current?.values.employmentstartdate) >=
-          Number(employer?.mandateRule?.mandateDuration.split(" ")[0]) &&
+            Number(employer?.mandateRule?.mandateDuration.split(" ")[0]) &&
           careertype.toLowerCase() === "government employee"
-          ? "ippis"
-          : ""
+        ? "ippis"
+        : ""
     );
   }, [employer, careerType]);
 
@@ -301,7 +307,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
         const customerId = generateCustomerId();
         const formData = new FormData();
 
-        console.log(formValues.photocapture, "formValues.photocapture")
+        console.log(formValues.photocapture, "formValues.photocapture");
 
         formData.append("customerId", customerId);
         formData.append(
@@ -461,7 +467,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
 
   // handle next step, check validation schema and move to next step
   const handleNext = () => {
-    console.log("PAPAPAP", careerType)
+    console.log("PAPAPAP", careerType);
     // Check that fields are valid
     if (
       isFieldValid("title", ref) &&
@@ -514,12 +520,12 @@ const LoanForm = React.memo(function LoanFormComponent() {
         if (
           careerType !== "business owner" && employer?.mandateRule
             ? (calcDaysDiffFromNow(ref.current?.values.employmentstartdate) <
-              Number(employer?.mandateRule?.mandateDuration.split(" ")[0]) &&
-              employer?.mandateRule?.allowStacking == "yes" &&
+                Number(employer?.mandateRule?.mandateDuration.split(" ")[0]) &&
+                employer?.mandateRule?.allowStacking == "yes" &&
+                calcDaysDiffFromNow(ref.current?.values.employmentstartdate) >=
+                  parseInt(employer?.mandateRule?.secondaryDuration)) ||
               calcDaysDiffFromNow(ref.current?.values.employmentstartdate) >=
-              parseInt(employer?.mandateRule?.secondaryDuration)) ||
-            calcDaysDiffFromNow(ref.current?.values.employmentstartdate) >=
-            Number(employer?.mandateRule?.mandateDuration.split(" ")[0])
+                Number(employer?.mandateRule?.mandateDuration.split(" ")[0])
             : true
         ) {
           storeInLocalStorage({
@@ -576,6 +582,8 @@ const LoanForm = React.memo(function LoanFormComponent() {
       setStepImg("https://i.imgur.com/SCIwWO7.png");
     }
   };
+
+  const [isMarketer, setIsMarketer] = useState(null); // Track Yes/No selection
 
   return (
     <div className="container-fluid FormContainer">
@@ -811,7 +819,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                     {/* Staff ID card upload */}
                                     <div>
                                       {careerType?.toLowerCase() ===
-                                        "government employee" ? (
+                                      "government employee" ? (
                                         <div>
                                           <div className="InputRow">
                                             <TextInput
@@ -834,7 +842,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                               fontSize="22px"
                                               text={
                                                 values.careertype !==
-                                                  "business owner"
+                                                "business owner"
                                                   ? "Upload Staff ID Card"
                                                   : "Upload ID Card"
                                               }
@@ -850,7 +858,11 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                                   convertFile(e, setIdCard)
                                                 }
                                               />
-                                              <ErrorMessage name={"valididcard"} component="div" className="Error" />
+                                              <ErrorMessage
+                                                name={"valididcard"}
+                                                component="div"
+                                                className="Error"
+                                              />
                                             </div>
                                           </div>
                                         </div>
@@ -872,7 +884,11 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                               convertFile(e, setIdCard)
                                             }
                                           />
-                                          <ErrorMessage name={"valididcard"} component="div" className="Error" />
+                                          <ErrorMessage
+                                            name={"valididcard"}
+                                            component="div"
+                                            className="Error"
+                                          />
                                         </div>
                                       )}
                                       <hr className="hLine" />
@@ -1007,17 +1023,17 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                     {/* type employer name if not in list */}
                                     {(careerType !== "government employee" ||
                                       values?.employerId === "other") && (
-                                        <TextInput
-                                          label={
-                                            careerType === "business owner"
-                                              ? "Business Name"
-                                              : "Enter Employers Name"
-                                          }
-                                          name="otheremployername"
-                                          type="text"
-                                          placeholder="Type  name here"
-                                        />
-                                      )}
+                                      <TextInput
+                                        label={
+                                          careerType === "business owner"
+                                            ? "Business Name"
+                                            : "Enter Employers Name"
+                                        }
+                                        name="otheremployername"
+                                        type="text"
+                                        placeholder="Type  name here"
+                                      />
+                                    )}
                                   </div>
                                   <TextInput
                                     label={
@@ -1058,9 +1074,9 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                   {/* pay slip upload private employee*/}
                                   {careerType?.toLowerCase() ===
                                     "private employee" ||
-                                    (values?.loanamount >
-                                      employer?.statementRule?.maximumAmount &&
-                                      values?.noofmonth >
+                                  (values?.loanamount >
+                                    employer?.statementRule?.maximumAmount &&
+                                    values?.noofmonth >
                                       employer?.statementRule?.maximumTenure.slice(
                                         0,
                                         3
@@ -1081,7 +1097,11 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                           convertFile(e, setPaySlip)
                                         }
                                       />
-                                      <ErrorMessage name={"uploadpayslip"} component="div" className="Error" />
+                                      <ErrorMessage
+                                        name={"uploadpayslip"}
+                                        component="div"
+                                        className="Error"
+                                      />
                                     </div>
                                   ) : null}
                                   {/* Bank Statement and Employement Letter fro government Employeee*/}
@@ -1103,10 +1123,14 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                             convertFile(e, setBankStatements)
                                           }
                                         />
-                                        <ErrorMessage name={"uploadbankstatement"} component="div" className="Error" />
+                                        <ErrorMessage
+                                          name={"uploadbankstatement"}
+                                          component="div"
+                                          className="Error"
+                                        />
                                       </div>
                                     ) : employer?.employmentLetterRule
-                                      ?.ruleActive ? (
+                                        ?.ruleActive ? (
                                       <div className="FileUploadBox ">
                                         <Headline
                                           color="#000"
@@ -1139,7 +1163,11 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                   <button
                                     type="button"
                                     onClick={handleNext}
-                                    disabled={(isSubmitting || (careerType === "government employee" && employerId === "other"))}
+                                    disabled={
+                                      isSubmitting ||
+                                      (careerType === "government employee" &&
+                                        employerId === "other")
+                                    }
                                     className="BtnAction BtnSecondary"
                                   >
                                     Next
@@ -1378,17 +1406,17 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                       />
 
                                       {careerType?.toLowerCase() ===
-                                        "government employee" ? (
+                                      "government employee" ? (
                                         <div>
                                           {employer?.mandateRule
                                             ?.allowStacking == "yes" &&
                                             calcDaysDiffFromNow(
                                               values.employmentstartdate
                                             ) >=
-                                            parseInt(
-                                              employer.mandateRule
-                                                ?.secondaryDuration
-                                            ) && (
+                                              parseInt(
+                                                employer.mandateRule
+                                                  ?.secondaryDuration
+                                              ) && (
                                               <div>
                                                 <label>
                                                   <Field
@@ -1410,18 +1438,18 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                                 " "
                                               )[0]
                                             ) && (
-                                              <div>
-                                                <label>
-                                                  <Field
-                                                    type="radio"
-                                                    name="deductions"
-                                                    value="ippis"
-                                                  />
-                                                </label>
-                                                Deduction from source via IPPIS
-                                                (Government employee)
-                                              </div>
-                                            )}
+                                            <div>
+                                              <label>
+                                                <Field
+                                                  type="radio"
+                                                  name="deductions"
+                                                  value="ippis"
+                                                />
+                                              </label>
+                                              Deduction from source via IPPIS
+                                              (Government employee)
+                                            </div>
+                                          )}
                                         </div>
                                       ) : (
                                         <>
@@ -1495,7 +1523,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                   <button
                                     type="button"
                                     onClick={handleNext}
-                                    disabled={(isSubmitting || guar === false)}
+                                    disabled={isSubmitting || guar === false}
                                     className="BtnAction BtnSecondary"
                                   >
                                     Next
@@ -1664,17 +1692,27 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                             // Manually set validation error for file size
                                             setSigError(true);
                                             console.log("ADASDASDASDsa");
-                                            setFieldError("signature", "File size exceeds 200KB");
+                                            setFieldError(
+                                              "signature",
+                                              "File size exceeds 200KB"
+                                            );
                                             return;
-                                          }
-                                          else{
+                                          } else {
                                             setSigError(false);
                                           }
                                           convertFile(e, setSignature); // Proceed with valid file
                                         }}
                                       />
-                                      {(sigError) && <p style={{color:"red"}}>File Limit Exceeds 200 KB</p> }
-                                      <ErrorMessage name="signature" component="div" className="Error" />
+                                      {sigError && (
+                                        <p style={{ color: "red" }}>
+                                          File Limit Exceeds 200 KB
+                                        </p>
+                                      )}
+                                      <ErrorMessage
+                                        name="signature"
+                                        component="div"
+                                        className="Error"
+                                      />
                                     </div>
                                   </div>
 
@@ -1699,26 +1737,66 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                     />
                                   </div>
                                   {/*  marketerClientPic Upload */}
-                                  <div className="SelfiCon">
-                                    <Headline
-                                      fontSize="16px"
-                                      text="Are you a DSA / Marketer? Upload client picture below. "
-                                    />
-
-                                    <div>
-                                      <input
-                                        type="file"
-                                        name="marketerClientPic"
-                                        accept="image/png, .svg, .jpg, .jpeg, .pdf"
-                                        onBlur={handleBlur}
-                                        className="UploadFile"
-                                        onChange={(e) =>
-                                          convertFile(e, setMarketerClientPic)
-                                        }
+                                  {(isMarketer === null ||
+                                    isMarketer === true) && (
+                                    <div className="SelfiCon">
+                                      <Headline
+                                        fontSize="16px"
+                                        text="Are you a DSA / Marketer?  "
                                       />
-                                      <ErrorMessage name={"signature"} component="div" className="Error" />
+
+                                      {/* Radio Buttons */}
+                                      <div style={{ marginBottom: "16px" }}>
+                                        <label>
+                                          <input
+                                            type="radio"
+                                            name="isMarketer"
+                                            value="yes"
+                                            onChange={() => setIsMarketer(true)}
+                                          />
+                                          Yes
+                                        </label>
+                                        <label style={{ marginLeft: "16px" }}>
+                                          <input
+                                            type="radio"
+                                            name="isMarketer"
+                                            value="no"
+                                            onChange={() =>
+                                              setIsMarketer(false)
+                                            }
+                                          />
+                                          No
+                                        </label>
+                                      </div>
+
+                                      {/* Conditionally Render File Upload */}
+                                      {isMarketer && (
+                                        <>
+                                          <p>Upload client picture below.</p>
+                                          <div>
+                                            <input
+                                              type="file"
+                                              name="marketerClientPic"
+                                              accept="image/png, .svg, .jpg, .jpeg, .pdf"
+                                              onBlur={handleBlur}
+                                              className="UploadFile"
+                                              onChange={(e) =>
+                                                convertFile(
+                                                  e,
+                                                  setMarketerClientPic
+                                                )
+                                              }
+                                            />
+                                            <ErrorMessage
+                                              name={"signature"}
+                                              component="div"
+                                              className="Error"
+                                            />
+                                          </div>
+                                        </>
+                                      )}
                                     </div>
-                                  </div>
+                                  )}
 
                                   <div className="ButtonContainer">
                                     <button
@@ -1730,14 +1808,14 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                     </button>
                                     {/* next form page btn */}
                                     {!values.acceptterms ||
-                                      !values.acceptpolicy ||
-                                      !values.agreefullname ||
-                                      !values.agreedate ||
-                                      !values.signature ||
-                                      // !values.photocapture ||
-                                      !values.agreeNibbsDebit ||
-                                      (values.deductions === "remita" &&
-                                        !values.sharemyremita) ? (
+                                    !values.acceptpolicy ||
+                                    !values.agreefullname ||
+                                    !values.agreedate ||
+                                    !values.signature ||
+                                    // !values.photocapture ||
+                                    !values.agreeNibbsDebit ||
+                                    (values.deductions === "remita" &&
+                                      !values.sharemyremita) ? (
                                       <button
                                         type="button"
                                         disabled={true}
