@@ -97,11 +97,11 @@ const LoanForm = React.memo(function LoanFormComponent() {
     // }
   };
 
-  useEffect(()=>{
-    if(firstStepData){
-      console.log("AAAAAA",firstStepData);
+  useEffect(() => {
+    if (firstStepData) {
+      console.log("AAAAAA", firstStepData);
     }
-  },[firstStepData])
+  }, [firstStepData])
 
   // Fetch Officers, Products and Employers
   useEffect(() => {
@@ -196,6 +196,9 @@ const LoanForm = React.memo(function LoanFormComponent() {
     }
   };
 
+
+  const [sigError,setSigError]=useState(false);
+
   useEffect(() => {
     updateFormValues();
   }, []);
@@ -281,7 +284,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
     ref.current?.setFieldValue("stateofresidence", state);
   };
 
-  const [guar,setGuar]=useState(false);
+  const [guar, setGuar] = useState(false);
 
   // handle form submit/move to next step
   const handleSubmit = async () => {
@@ -458,7 +461,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
 
   // handle next step, check validation schema and move to next step
   const handleNext = () => {
-    console.log("PAPAPAP",careerType)
+    console.log("PAPAPAP", careerType)
     // Check that fields are valid
     if (
       isFieldValid("title", ref) &&
@@ -1136,7 +1139,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                   <button
                                     type="button"
                                     onClick={handleNext}
-                                    disabled={(isSubmitting || (careerType==="government employee" && employerId==="other"))}
+                                    disabled={(isSubmitting || (careerType === "government employee" && employerId === "other"))}
                                     className="BtnAction BtnSecondary"
                                   >
                                     Next
@@ -1460,7 +1463,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                             type="radio"
                                             name="guarantee"
                                             value="guranteeofemployer"
-                                            onClick={()=>setGuar(true)}
+                                            onClick={() => setGuar(true)}
                                           />
                                         </label>
                                         Guarantee of Employer
@@ -1471,7 +1474,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                             type="radio"
                                             name="guarantee"
                                             value="individualguarantee"
-                                            onClick={()=>setGuar(true)}
+                                            onClick={() => setGuar(true)}
                                           />
                                         </label>
                                         Individual Guarantee
@@ -1492,7 +1495,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                   <button
                                     type="button"
                                     onClick={handleNext}
-                                    disabled={(isSubmitting || guar===false)}
+                                    disabled={(isSubmitting || guar === false)}
                                     className="BtnAction BtnSecondary"
                                   >
                                     Next
@@ -1655,11 +1658,23 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                         accept="image/png, .svg, .jpg, .jpeg, .pdf"
                                         onBlur={handleBlur}
                                         className="UploadFile"
-                                        onChange={(e) =>
-                                          convertFile(e, setSignature)
-                                        }
+                                        onChange={(e) => {
+                                          const file = e.currentTarget.files[0];
+                                          if (file && file.size > 200 * 1024) {
+                                            // Manually set validation error for file size
+                                            setSigError(true);
+                                            console.log("ADASDASDASDsa");
+                                            setFieldError("signature", "File size exceeds 200KB");
+                                            return;
+                                          }
+                                          else{
+                                            setSigError(false);
+                                          }
+                                          convertFile(e, setSignature); // Proceed with valid file
+                                        }}
                                       />
-                                      <ErrorMessage name={"signature"} component="div" className="Error" />
+                                      {(sigError) && <p style={{color:"red"}}>File Limit Exceeds 200 KB</p> }
+                                      <ErrorMessage name="signature" component="div" className="Error" />
                                     </div>
                                   </div>
 
