@@ -30,8 +30,8 @@ const PhotoCapture = ({ func }) => {
   }, []);
 
   return (
-    <>
-      <div className="Container" onClick={takePhotos}>
+    <div >
+      <div className="Container" onClick={takePhotos} style={{backgroundColor:"Blue"}}>
         <AiOutlineCamera className="CameraIcon" />
         <p className="Text">Take a Photo Now</p>
       </div>
@@ -64,7 +64,7 @@ const PhotoCapture = ({ func }) => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
