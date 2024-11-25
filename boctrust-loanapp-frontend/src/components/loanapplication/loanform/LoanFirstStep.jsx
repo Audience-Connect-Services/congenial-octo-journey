@@ -171,18 +171,18 @@ const LoanFirstStep = ({ data }) => {
     // );
 
     //Store the information in Local Storage
-    // sessionStorage.setItem(
-    //   "loanFirstInfo",
-    //   JSON.stringify({
-    //     bvn: bvn,
-    //     loanAmount: loanamount,
-    //     careerType: careertype,
-    //     numberOfMonths: noofmonth,
-    //     loanTotalRepayment: loanRepaymentTotal,
-    //     monthlyRepayment,
-    //     loanProduct: product,
-    //   })
-    // );
+    sessionStorage.setItem(
+      "loanFirstInfo",
+      JSON.stringify({
+        bvn: bvn,
+        loanAmount: loanamount,
+        careerType: careertype,
+        numberOfMonths: noofmonth,
+        loanTotalRepayment: loanRepaymentTotal,
+        monthlyRepayment,
+        loanProduct: product,
+      })
+    );
 
     const raw = JSON.stringify({
       bvn,
@@ -204,8 +204,8 @@ const LoanFirstStep = ({ data }) => {
       .then((response) => response.json())
       .then(() => {
         // search for bvn details and verify
-        bvnVerification();
-        // navigate("/app/nibbs-login")
+        // bvnVerification();
+        navigate("/app/nibbs-login")
         // set show loan form to true
         // setShowLoanForm(true);
       });

@@ -80,22 +80,28 @@ const LoanForm = React.memo(function LoanFormComponent() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const code = urlSearchParams.get("code");
 
-    // setFirstStepData(JSON.parse(sessionStorage.getItem("loanFirstInfo")));
+    setFirstStepData(JSON.parse(sessionStorage.getItem("loanFirstInfo")));
 
-    if (code) {
-      const { bvn } = await getBvnDetails(code); // Call this function if there's an authorization code in the URL
-      const firstDataResponse = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/api/tempdata/tempdata/${bvn}`
-      );
-      setFirstStepData(firstDataResponse.data.data);
-      await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/api/tempdata/tempdata/${bvn}`
-      );
-    } else {
-      // Optionally, handle other initialization tasks here
-      console.log("No authorization code found. Proceed with the normal flow.");
-    }
+    // if (code) {
+    //   const { bvn } = await getBvnDetails(code); // Call this function if there's an authorization code in the URL
+    //   const firstDataResponse = await axios.get(
+    //     `${import.meta.env.VITE_BASE_URL}/api/tempdata/tempdata/${bvn}`
+    //   );
+    //   setFirstStepData(firstDataResponse.data.data);
+    //   await axios.delete(
+    //     `${import.meta.env.VITE_BASE_URL}/api/tempdata/tempdata/${bvn}`
+    //   );
+    // } else {
+    //   // Optionally, handle other initialization tasks here
+    //   console.log("No authorization code found. Proceed with the normal flow.");
+    // }
   };
+
+  useEffect(()=>{
+    if(firstStepData){
+      console.log("AAAAAA",firstStepData);
+    }
+  },[firstStepData])
 
   // Fetch Officers, Products and Employers
   useEffect(() => {
