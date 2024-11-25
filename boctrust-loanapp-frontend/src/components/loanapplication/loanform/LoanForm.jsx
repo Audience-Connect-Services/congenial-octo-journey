@@ -281,6 +281,8 @@ const LoanForm = React.memo(function LoanFormComponent() {
     ref.current?.setFieldValue("stateofresidence", state);
   };
 
+  const [guar,setGuar]=useState(false);
+
   // handle form submit/move to next step
   const handleSubmit = async () => {
     // handle form submit to backend here
@@ -1458,6 +1460,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                             type="radio"
                                             name="guarantee"
                                             value="guranteeofemployer"
+                                            onClick={()=>setGuar(true)}
                                           />
                                         </label>
                                         Guarantee of Employer
@@ -1468,6 +1471,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                             type="radio"
                                             name="guarantee"
                                             value="individualguarantee"
+                                            onClick={()=>setGuar(true)}
                                           />
                                         </label>
                                         Individual Guarantee
@@ -1488,7 +1492,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                   <button
                                     type="button"
                                     onClick={handleNext}
-                                    disabled={isSubmitting}
+                                    disabled={(isSubmitting || guar===false)}
                                     className="BtnAction BtnSecondary"
                                   >
                                     Next
