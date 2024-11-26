@@ -76,7 +76,7 @@ const PhoneOtp = (props) => {
   // handle otp request
   const requestOtp = async (e) => {
     e.preventDefault();
-    const phone = "234" + updatePhone.slice(1);
+    const phoneNumber = updatePhone;
 
     setErrorMsg("");
 
@@ -84,7 +84,7 @@ const PhoneOtp = (props) => {
       return setErrorMsg("Please enter a valid phone number");
     try {
       setLoading(true);
-      const response = await setUpRecaptcha(phone);
+      const response = await sendOTP(phoneNumber);
 
       if (response) {
         setConfirmOtp(response);
@@ -127,7 +127,7 @@ const PhoneOtp = (props) => {
   const verifyOtp = async (e) => {
     e.preventDefault();
 
-    if (!window.recaptchaVerifier) return;
+    console.log("AAAA");
 
     if (otp === "" || otp.length !== 6)
       return setErrorMsg("Please enter a valid OTP");
@@ -153,7 +153,7 @@ const PhoneOtp = (props) => {
 
       navigate("/login");
     } catch (error) {
-      console.error("Error verifying OTP:", error);
+      console.log("Error verifying OTP:", error);
       setErrorMsg(`Error verifying OTP: ${error?.message}`);
       toast.error(error?.message || "Something Went Wrong");
     } finally {
@@ -218,9 +218,8 @@ const PhoneOtp = (props) => {
             <div style={styles.btnBox}>
               <Button
                 variant="secondary"
-                onClick={() => {
-                  setFlag(false);
-                  setOtp("");
+                onClick={(e) => {
+                  requestOtp(e)
                 }}
               >
                 Resend OTP
