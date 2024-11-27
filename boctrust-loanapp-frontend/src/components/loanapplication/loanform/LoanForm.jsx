@@ -27,6 +27,7 @@ import ReconfirmBvn from "./ReconfirmBvn";
 import fetchAllBanks from "./fetchBanks";
 import { getBvnDetails } from "./bvnVerification";
 import { toast } from "react-toastify";
+import Select from "react-select";
 
 // toast styles
 import "react-toastify/dist/ReactToastify.css";
@@ -182,6 +183,10 @@ const LoanForm = React.memo(function LoanFormComponent() {
     "employmentletter",
     "uploadpayslip",
   ];
+
+
+
+  const [agentCode,setAgentCode]=useState("");
 
   const updateFormValues = () => {
     const formValues = getFromLocalStorage("onbaordData");
@@ -411,7 +416,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
             "image.jpg"
           ); // Convert data URI to Blob
         formData.append("haveagent", formValues.haveagent);
-        formData.append("agentcode", formValues.agentcode);
+        formData.append("agentcode", agentCode);
         formData.append("username", formValues.username);
         formData.append("password", formValues.password);
         formData.append("confirmpassword", formValues.confirmpassword);
@@ -447,6 +452,22 @@ const LoanForm = React.memo(function LoanFormComponent() {
     const formContainer = document.querySelector(".FormContainer");
     formContainer.style.padding = "12px";
     setShowForm(false);
+  };
+
+  const [loanOfficerOptions,setLoanOfficerOptions]=useState([]);
+
+  useEffect(() => {
+    if (allLoanOfficers) {
+      const options = allLoanOfficers.map((officer) => ({
+        value: officer.Code,
+        label: officer.Name,
+      }));
+      setLoanOfficerOptions(options);
+    }
+  }, [allLoanOfficers]);
+
+  const handleChangeAgentCode = (selectedOption) => {
+    setAgentCode(selectedOption);
   };
 
   // todo: fetch banks and code
@@ -1650,21 +1671,20 @@ const LoanForm = React.memo(function LoanFormComponent() {
                                         </div>
                                       </div>
                                       {values.haveagent === "yes" && (
-                                        <SelectField
-                                          label="Select Loan Officer"
-                                          name="agentcode"
-                                        >
-                                          <option value=""></option>
-                                          {allLoanOfficers &&
-                                            allLoanOfficers.map((officers) => (
-                                              <option
-                                                key={officers.Code}
-                                                value={officers.Code}
-                                              >
-                                                {officers.Name}
-                                              </option>
-                                            ))}
-                                        </SelectField>
+                                        <div>
+                                          <label htmlFor="agentCode">
+                                            Select Loan Officer
+                                          </label>
+                                          <Select
+                                            name="agentCode"
+                                            id="agentCode"
+                                            options={loanOfficerOptions}
+                                            value={agentCode} // Handle missing agentCode
+                                            onChange={handleChangeAgentCode}
+                                            placeholder="Select Loan Officer"
+                                            isClearable
+                                          />
+                                        </div>
                                       )}
                                     </div>
                                     <hr />

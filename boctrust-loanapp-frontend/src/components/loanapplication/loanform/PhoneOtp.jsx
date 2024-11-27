@@ -76,7 +76,7 @@ const PhoneOtp = (props) => {
   // handle otp request
   const requestOtp = async (e) => {
     e.preventDefault();
-    const phoneNumber = updatePhone;
+    const phoneNumber = (updatePhone[0]==="+")?updatePhone:"+234"+updatePhone.slice(1);
 
     setErrorMsg("");
 
@@ -127,6 +127,8 @@ const PhoneOtp = (props) => {
   const verifyOtp = async (e) => {
     e.preventDefault();
 
+    const phoneNumber = (updatePhone[0]==="+")?updatePhone:"+234"+updatePhone.slice(1);
+
     console.log("AAAA");
 
     if (otp === "" || otp.length !== 6)
@@ -145,7 +147,7 @@ const PhoneOtp = (props) => {
 
       // send loan application email and sms notification
       await sendSMS(
-        number,
+        phoneNumber,
         "Your loan application has been received. We will get back to you shortly."
       );
 
