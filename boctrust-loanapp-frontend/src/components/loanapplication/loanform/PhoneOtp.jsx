@@ -84,7 +84,7 @@ const PhoneOtp = (props) => {
       return setErrorMsg("Please enter a valid phone number");
     try {
       setLoading(true);
-      const response = await sendOTP(phoneNumber);
+      const response = await setUpRecaptcha(phoneNumber);
 
       if (response) {
         setConfirmOtp(response);

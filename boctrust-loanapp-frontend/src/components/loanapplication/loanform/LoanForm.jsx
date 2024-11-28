@@ -100,7 +100,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
 
   useEffect(() => {
     if (firstStepData) {
-      console.log("AAAAAA", firstStepData);
+      // console.log("AAAAAA", firstStepData);
     }
   }, [firstStepData]);
 
@@ -184,9 +184,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
     "uploadpayslip",
   ];
 
-
-
-  const [agentCode,setAgentCode]=useState("");
+  const [agentCode, setAgentCode] = useState("");
 
   const updateFormValues = () => {
     const formValues = getFromLocalStorage("onbaordData");
@@ -438,6 +436,141 @@ const LoanForm = React.memo(function LoanFormComponent() {
         toast.success("Customer Account Created!!!");
         deleteFromLocalStorage("onbaordData");
         fileValues.map((item) => deleteFromLocalStorage(item));
+      } else if (onboardData.salaryaccountname !== null) {
+        // const employer = employers.find(
+        //   (employer) => employer._id === formValues.employerId
+        // );
+
+        // // generate customer id
+        // const customerId = generateCustomerId();
+        // const formData = new FormData();
+
+        // console.log(formValues.photocapture, "formValues.photocapture");
+
+        // formData.append("customerId", customerId);
+        // formData.append(
+        //   "loanamount",
+        //   parseInt(onboardData.loanamount.replace(/,/g, ""))
+        // );
+        // formData.append("numberofmonth", onboardData.numberofmonth);
+        // formData.append("loantotalrepayment", loanRepaymentTotal);
+        // formData.append("monthlyrepayment", monthlyRepayment);
+        // formData.append("careertype", onboardData.careertype);
+        // formData.append("loanproduct", product?._id);
+        // formData.append("loanpurpose", onboardData.loanpurpose);
+        // formData.append("otherpurpose", onboardData.otherpurpose);
+        // formData.append("bvnnumber", onboardData.bvnnumber);
+        // formData.append("title", onboardData.title);
+        // formData.append("gender", onboardData.gender);
+        // formData.append("firstname", onboardData.firstname);
+        // formData.append("lastname", onboardData.lastname);
+        // formData.append("phonenumber", onboardData.phonenumber);
+        // formData.append("dob", onboardData.dob);
+        // formData.append("email", onboardData.email);
+        // formData.append("maritalstatus", onboardData.maritalstatus);
+        // formData.append("noofdependent", onboardData.noofdependent);
+        // formData.append("educationlevel", onboardData.educationlevel);
+        // formData.append(
+        //   "howdidyouhearaboutus",
+        //   onboardData.howdidyouhearaboutus
+        // );
+        // formData.append("houseaddress", onboardData.houseaddress);
+        // formData.append("stateofresidence", onboardData.stateofresidence);
+        // formData.append("lga", onboardData.lga);
+        // formData.append("stateoforigin", onboardData.stateoforigin);
+        // formData.append("ippis", onboardData.ippis);
+        // formData.append("servicenumber", onboardData.servicenumber);
+        // formData.append("valididcard", onboardData.valididcard);
+        // formData.append("idcardnotinclude", onboardData.idcardnotinclude);
+        // formData.append("nkinfirstname", onboardData.nkinfirstname);
+        // formData.append("nkinlastname", onboardData.nkinlastname);
+        // formData.append("nkinphonenumber", onboardData.nkinphonenumber);
+        // formData.append("nkinrelationship", onboardData.nkinrelationship);
+        // formData.append(
+        //   "nkinresidentialaddress",
+        //   onboardData.nkinresidentialaddress
+        // );
+        // formData.append("employer", employer?._id);
+        // formData.append("otheremployername", onboardData.otheremployername);
+        // formData.append("employeraddress", onboardData.employeraddress);
+        // formData.append("employmentstartdate", onboardData.employmentstartdate);
+        // formData.append("employmentletter", onboardData.employmentletter);
+        // formData.append("netmonthlyincome", onboardData.netmonthlyincome);
+        // formData.append("totalannualincome", onboardData.totalannualincome);
+        // formData.append("officialemail", onboardData.officialemail);
+        // formData.append("uploadbankstatement", onboardData.uploadbankstatement);
+        // formData.append("uploadpayslip", onboardData.uploadpayslip);
+
+        // // financial info
+        // formData.append("salaryaccountname", onboardData.salaryaccountname);
+        // formData.append("salaryaccountnumber", onboardData.salaryaccountnumber);
+        // formData.append("bankcode", onboardData.bankcode);
+        // formData.append(
+        //   "disbursementbankname",
+        //   onboardData.disbursementbankname
+        // );
+        // formData.append(
+        //   "disbursementaccountnumber",
+        //   onboardData.disbursementaccountnumber
+        // );
+        // formData.append("hasloan", onboardData.hasloan);
+        // formData.append(
+        //   "currentmonthlyplanrepaymentamount",
+        //   onboardData.currentmonthlyplanrepaymentamount
+        // );
+        // formData.append(
+        //   "estimatedmonthlylivingexpense",
+        //   onboardData.estimatedmonthlylivingexpense
+        // );
+        // formData.append("buyoverloan", onboardData.buyoverloan);
+        // formData.append("beneficiaryname", onboardData.beneficiaryname);
+        // formData.append("beneficiarybank", onboardData.beneficiarybank);
+        // formData.append(
+        //   "beneficiaryaccountnumber",
+        //   onboardData.beneficiaryaccountnumber
+        // );
+        // formData.append("liquidationbalance", onboardData.liquidationbalance);
+        // formData.append("deductions", onboardData.deductions);
+        // formData.append("guarantee", onboardData.guarantee);
+
+        // // agree and sign
+        // formData.append("acceptterms", onboardData.acceptterms);
+        // formData.append("acceptpolicy", onboardData.acceptpolicy);
+        // formData.append("sharemyremita", onboardData.sharemyremita);
+        // formData.append("agreenibbsdebit", onboardData.agreeNibbsDebit);
+        // formData.append("agreefullname", onboardData.agreefullname);
+        // formData.append("agreedate", onboardData.agreedate);
+        // formData.append("signature", onboardData.signature);
+        // formData.append("marketerClientPic", onboardData.marketerClientPic);
+        // onboardData.photocapture &&
+        //   formData.append(
+        //     "photocapture",
+        //     dataURItoBlob(onboardData.photocapture),
+        //     "image.jpg"
+        //   ); // Convert data URI to Blob
+        // formData.append("haveagent", onboardData.haveagent);
+        // formData.append("agentcode", agentCode);
+        // formData.append("username", onboardData.username);
+        // formData.append("password", onboardData.password);
+        // formData.append("confirmpassword", onboardData.confirmpassword);
+
+        // // send formData to database
+
+        // const res = await fetch(`${apiUrl}/api/customer/customer`, {
+        //   method: "POST",
+        //   mode: "cors",
+        //   enctype: "multipart/form-data",
+        //   body: formData,
+        // });
+
+        // const responsePayload = await res.json();
+
+        // if (!res.ok) {
+        //   throw new Error(responsePayload.error);
+        // }
+        // toast.success("Customer Account Created!!!");
+        // deleteFromLocalStorage("onbaordData");
+        // fileValues.map((item) => deleteFromLocalStorage(item));
       }
     } catch (error) {
       console.log(error);
@@ -454,7 +587,7 @@ const LoanForm = React.memo(function LoanFormComponent() {
     setShowForm(false);
   };
 
-  const [loanOfficerOptions,setLoanOfficerOptions]=useState([]);
+  const [loanOfficerOptions, setLoanOfficerOptions] = useState([]);
 
   useEffect(() => {
     if (allLoanOfficers) {
@@ -486,9 +619,21 @@ const LoanForm = React.memo(function LoanFormComponent() {
     });
   };
 
+  const [onboardData, setOnBoardData] = useState(null);
+
+  useEffect(() => {
+    setOnBoardData(JSON.parse(localStorage.getItem("onbaordData")));
+  }, []);
+
+  useEffect(() => {
+    if (onboardData) {
+      console.log("AAAA Onboard", onboardData);
+      setStep(5);
+    }
+  }, [onboardData]);
+
   // handle next step, check validation schema and move to next step
   const handleNext = () => {
-    console.log("PAPAPAP", careerType);
     // Check that fields are valid
     if (
       isFieldValid("title", ref) &&
